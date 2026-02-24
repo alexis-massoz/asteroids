@@ -27,6 +27,7 @@ def main():
     field = AsteroidField()
 
     dt = 0 
+    score = 0 
 
     
     while True:
@@ -48,11 +49,14 @@ def main():
                     log_event("asteroid_shot")
                     asteroid.split()
                     shot.kill()
+                    score += 1
         for draw in drawable:
             draw.draw(screen)
 
+        font = pygame.font.Font(None, 36)
+        surf = font.render(f"Score: {score}", True, "white")
+        screen.blit(surf, (10, 10))
         
-        #player.draw(screen)
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000
